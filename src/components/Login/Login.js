@@ -1,22 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
+import useForm from "react-hook-form";
+import { DoubleBounce } from "better-react-spinkit";
 
-export const Login = ({ name, email }) => (
-    <>
+import login from "../../components/Utils/login-utils";
+import LoginErrors from './LoginErrors';
+
+export const Login = () => {
+
+    const { register, errors, setError, handleSubmit } = useForm();
+    const [loading, setLoading] = useState(false);
+
+    const onSubmit = data => {
+        setLoading(true);
+
+        login(data.login, data.password)
+            .then(response => {
+                if (response.status < 200 || response.status >= 300)
+                    throw new Error(response);
+
+                return response.json();
+            })
+            .then(({ token, username }) => {
+                localStorage.setItem("front-user", token);
+                setLoading(false);
+            })
+            .catch(e => {
+                setLoading(false);
+                setError("apiServer", "connection", "Une erreur est survenue");
+            });
+    };
+
+
+    return (
+        <>
         <div className="connection-form-container">
             <form
+                onSubmit={handleSubmit(onSubmit)}
                 method="POST"
                 id="connexion-form"
             >
                 <div className="uk-margin">
                     <div className="uk-inline">
+                        <LoginErrors errors={errors} />
                         <span className="uk-form-icon" uk-icon="icon: user"></span>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="login">Login/Email</label>
                         <input
                             type="email"
                             className="uk-input"
-                            name="email"
+                            name="login"
                             placeholder="Mail"
-                            onSubmit="validateMail()"
+                            id="login"
+                            ref={register({ required: true })}
                         />
                     </div>
                 </div>
@@ -31,19 +65,31 @@ export const Login = ({ name, email }) => (
                             className="uk-input"
                             name="password"
                             placeholder="Password"
+                            ref={register({ required: true })}
                         />
                     </div>
                 </div>
-                <button
-                    id="connexion-button"
-                    className="uk-button uk-button-default"
-                    type="submit"
-                >
-                    Connection
-                </button>
+                <div className="uk-text-center uk-margin-top">
+                    {loading && (
+                        <div className="uk-flex uk-flex-center">
+                            <DoubleBounce />
+                        </div>
+                    )}
+                    {!loading && (
+                        <button
+                                id="connexion-button"
+                                className="uk-button uk-button-default"
+                                type="submit"
+                                disabled={loading}
+                            >
+                                Connection
+                            </button>
+                    )}
+                </div>
             </form>
         </div>
     </>
-);
+    )
+};
 
 

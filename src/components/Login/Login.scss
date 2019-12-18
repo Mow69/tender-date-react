@@ -1,0 +1,30 @@
+.login {
+    height: 100vh;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    form {
+      z-index: 2;
+      padding: 2em 1em;
+      background-color: #FFF;
+      border: 1px solid #CCC;
+      box-shadow: 0px 0px 20px 7px #00000045;
+      min-width: 275px;
+
+      label {
+        display: block;
+      }
+
+      div.uk-inline {
+        width: 100% !important;
+      }
+
+      input[type=text], input[type=password] {
+        border: 1px solid #CCC;
+      }
+    }
+}
