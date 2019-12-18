@@ -2,6 +2,11 @@ html, body, #root {
   height: 100%;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
 .main-container {
   height: 100%;
   background: url("../img/denys-nevozhai-6OAWj_ZvScc-unsplash.jpg") no-repeat;
@@ -18,21 +23,76 @@ html, body, #root {
 .uk-navbar-container {
   display: flex;
   justify-content: center;
+  color: darkblue;
 }
 
+.uk-navbar-nav > li > a, .uk-button.uk-button-default, .uk-navbar-item, .uk-input.uk-form-width-small input {
+  color: darkblue;
+}
 .uk-navbar-item.uk-logo {
   background-size: auto;
   background-position: center;
   width: 4.688em;
+  border-radius: 10px;
+}
+.uk-navbar-item.uk-logo img {
+  background-size: auto;
+  background-position: center;
+  width: 4.688em;
+  filter: hue-rotate(250deg);
+  border: transparent 12px solid;
+  border-radius: 39px;
 }
 
 #connexion-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: darkblue;
+  text-shadow: deeppink 3px 2px;
+  background: url("../../src/img/Love_Heart_symbol.svg") 0 0 no-repeat;
+  opacity:0.40;
+}
+
+// #connexion-form img {
+//  background: url("../../src/img/Love_Heart_symbol.svg") 0 0 no-repeat;
+//  opacity:0.40;
+//}
+
+#connexion-form button {
+  color: darkblue;
+  text-shadow: deeppink 3px 2px;
+}
+
+.connection-form-container {
+  display: flex;
+  flex-direction: column;
+
 }
 
 h1, h2, h3 {
   display: flex;
   justify-content: center;
+  color: deeppink;
+  text-shadow: darkblue 3px 5px;
+
+}
+
+#connexion-form {
+  justify-content: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.connection-form-container {
+  height: 100%;
+
+}
+
+.title-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+
 }

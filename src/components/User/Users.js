@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getUsers } from "../../services/UserService";
+import { getUsers } from "../services/UserService";
 import Search from "../Utils/Search";
 import UserList from "./UserList";
 
@@ -39,10 +39,10 @@ class Users extends Component {
   render = () => {
     return (
       <>
-        <Search handleChange={this.search} searchTerm={this.state.search} />
-        <div className="row mt-2">
-          <UserList users={this.state.userSearch} />
-        </div>
+        {/*<Search handleChange={this.search} searchTerm={this.state.search} />*/}
+        {/*<div className="row mt-2">*/}
+        {/*  <UserList users={this.state.userSearch} />*/}
+        {/*</div>*/}
       </>
     );
   };

@@ -7,13 +7,14 @@ class Search extends Component {
     return (
       <div className="row">
         <div className="col">
-          <input
-            type="text"
-            onChange={handleChange}
-            value={searchTerm}
-            placeholder="Recherche..."
-            className="form-control"
-          />
+            <form action="javascript:void(0)">
+                <input className="uk-input uk-form-width-small"type="text"
+                       onChange={handleChange}
+                       value={searchTerm}
+                       placeholder="Search Love..."
+                />
+                <button className="uk-button uk-button-default">SEARCH</button>
+            </form>
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getUser } from "../../services/UserService";
+import { getUser } from "../services/UserService";
 import Loader from "../Utils/Loader";
 
 class UserPage extends Component {
