@@ -16,6 +16,7 @@ class Users extends Component<IUsersProps, IUsersState> {
             userSearch: [],
             search: ""
         };
+        this.props.users = [];
     }
 
     componentDidMount = () => {
@@ -32,9 +33,9 @@ class Users extends Component<IUsersProps, IUsersState> {
         const search = e.target.value;
         let userSearch = this.props.users;
 
-        // if (search !== "") {
-        //     userSearch = this.props.users.filter(user => user.name.includes(search));
-        // }
+        if (search !== "") {
+            userSearch = this.props.users.filter(user => user.name.includes(search));
+        }
 
         this.setState({
             userSearch: userSearch,
