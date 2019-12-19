@@ -20,14 +20,13 @@ function App() {
                 <Router>
                     <div>
                         <Switch>
-                            <Route path="/user/:id" component={UserPage} />
-                            {/*<Route exact path="/" component={Login} />*/}
-                            <Route exact path="/" component={Users} />
+                            {/*<Route path="/user/:id" component={UserPage} />*/}
+                            {/*<Route exact path="/" component={Users} />*/}
+                            <Route exact path="/" component={Login} />
                             <Route component={NotFound} />
                         </Switch>
                     </div>
                 </Router>
-                <Login />
             </div>
         </div>
     </>

@@ -50,8 +50,7 @@ html, body, #root {
   align-items: center;
   color: darkblue;
   text-shadow: deeppink 3px 2px;
-  background: url("../../src/img/Love_Heart_symbol.svg") center center no-repeat;
-  opacity:0.40;
+
 }
 
 // #connexion-form img {
@@ -93,6 +92,15 @@ h1, h2, h3 {
   height: 100%;
   display: flex;
   flex-direction: column;
-
-
+  background: url("../../src/img/Love_Heart_symbol.svg") center center no-repeat;
+  opacity:0.40;
 }
+
+
+
+.uk-inline label {
+  display: flex;
+  font-weight: bold;
+  justify-content: flex-end;
+}
+
