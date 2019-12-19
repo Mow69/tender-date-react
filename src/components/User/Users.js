@@ -39,10 +39,12 @@ class Users extends Component {
   render = () => {
     return (
       <>
-        {/*<Search handleChange={this.search} searchTerm={this.state.search} />*/}
-        {/*<div className="row mt-2">*/}
-        {/*  <UserList users={this.state.userSearch} />*/}
-        {/*</div>*/}
+        <Search handleChange={this.search} searchTerm={this.state.search} />
+        <div className="row mt-2">
+          <UserList users={this.state.userSearch} />
+        </div>
+        <h1>UTILISATEURS</h1>
+
       </>
     );
   };

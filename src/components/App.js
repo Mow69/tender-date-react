@@ -1,36 +1,47 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Nav from "./Nav";
-import "./App.scss";
-import {Login} from "./Login/Login";
-import Users from "./User/Users";
-import UserPage from "./User/UserPage";
-import NotFound from "./NotFound";
+import React, { useState } from "react";
 
+import Login from "./Login";
+import UserContext from "../components/context/UserContext";
+import { tokenName, urls } from "../components/Utils/constants.js";
+import { Router, Route, Switch } from "react-router-dom";
+import { PrivateRoute } from "../components/Utils/PrivateRoute";
+import history from "../components/Utils/history";
+
+import DefaultPage from "./DefaultPage";
+import Users from "./User/Users";
 
 function App() {
-  return (
-    <>
-        <div className='main-container'>
-          <Nav />
-            <div className='title-container'>
-            <h1>Tender Date</h1>
-                <h2>Love me tender, darling</h2>
-                <h3>Ready to take the plunge ?</h3>
-                <Router>
-                    <div>
-                        <Switch>
-                            {/*<Route path="/user/:id" component={UserPage} />*/}
-                            {/*<Route exact path="/" component={Users} />*/}
-                            <Route exact path="/" component={Login} />
-                            <Route component={NotFound} />
-                        </Switch>
-                    </div>
-                </Router>
-            </div>
-        </div>
-    </>
-  );
+    // Je vérifie l'existence d'un token dans le localStorage
+    // Comme ça, quand j'arrive sur l'application, je peux vérifier directement si on a de quoi vérifier la connexion de l'utilisateur
+    const [isLogged, setIsLogged] = useState(
+        localStorage.getItem(tokenName) !== null
+    );
+    // Mon username contiendra le login de l'utilisateur connecté
+    // On va le récupérer via l'API, ceci nous permettra de vérifier que l'utilisateur a un token valide et non expiré
+    const [username, setUsername] = useState(null);
+
+    // useEffect(() => {
+    //   if (isLogged) {
+
+    //   }
+    // }, [isLogged]);
+
+    return (
+        <UserContext.Provider
+            value={{ isLogged, setIsLogged, username, setUsername }}
+        >
+            <Router history={history}>
+                <div>
+                    <Switch>
+                        <PrivateRoute exact path={urls.user.list} component={Users} />
+
+                        <Route exact path={urls.user.login} component={Login} />
+                        <Route exact path="/" component={DefaultPage} />
+                    </Switch>
+                </div>
+            </Router>
+        </UserContext.Provider>
+    );
 }
 
 export default App;

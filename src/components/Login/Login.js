@@ -1,16 +1,23 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
 import useForm from "react-hook-form";
 import {DoubleBounce} from "better-react-spinkit";
 
 import login from "../../components/Utils/login-utils";
 import LoginErrors from './LoginErrors';
+import UserContext from "../../components/context/UserContext";
+import { tokenName } from '../../components/Utils/constants.js';
+// import "./Login.scss";
 
-export const Login = () => {
+
+const Login = () => {
 
     const {register, errors, setError, handleSubmit} = useForm();
     const [loading, setLoading] = useState(false);
 
-    const onSubmit = data => {
+    const user = useContext(UserContext);
+    console.log('UserContext in Login component', user);
+
+    const connect = data => {
         setLoading(true);
 
         login(data.login, data.password)
@@ -20,12 +27,14 @@ export const Login = () => {
 
                 return response.json();
             })
-            .then(({token, username}) => {
-                localStorage.setItem("front-user", token);
+            .then(({ token }) => {
+                localStorage.setItem(tokenName, token);
+                user.setIsLogged(true);
                 setLoading(false);
             })
             .catch(e => {
                 setLoading(false);
+                user.setIsLogged(false);
                 setError("apiServer", "connection", "Une erreur est survenue");
             });
     };
@@ -35,7 +44,7 @@ export const Login = () => {
         <>
             <div className="connection-form-container">
                 <form
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit(connect)}
                     method="POST"
                     id="connexion-form"
                 >
@@ -92,4 +101,5 @@ export const Login = () => {
     )
 };
 
+export default Login;
 
