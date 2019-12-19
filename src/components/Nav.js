@@ -4,7 +4,7 @@ import Search from "./Utils/Search";
 
 class Nav extends Component {
     render = () => (
-        <nav className="uk-navbar-container uk-margin" uk-navbar>
+        <nav className="uk-navbar-container uk-margin">
             <div className="uk-navbar-left">
                 <a className="uk-navbar-item uk-logo" href="#">
                     <img src={logo} alt="Love me tender"/>

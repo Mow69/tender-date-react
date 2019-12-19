@@ -7,7 +7,7 @@ class Search extends Component {
     return (
       <div className="row">
         <div className="col">
-            <form action="javascript:void(0)">
+            <form action="">
                 <input className="uk-input uk-form-width-small"type="text"
                        onChange={handleChange}
                        value={searchTerm}
